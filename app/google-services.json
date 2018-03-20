@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "322794783991",
+    "firebase_url": "https://whygoalone-899e4.firebaseio.com",
+    "project_id": "whygoalone-899e4",
+    "storage_bucket": "whygoalone-899e4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322794783991:android:c1ef302134af0a97",
+        "android_client_info": {
+          "package_name": "com.ayushigarg.whygoalone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322794783991-e2hm8j4k2s8n6i00efmr6emt1gbu5o9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBFLMGm9tNxNqedMZ9kDsco2aCn2vVRRk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

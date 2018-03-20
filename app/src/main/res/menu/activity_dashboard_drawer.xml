@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/dashboard"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/favPlaces"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Favourite Places" />
+        <item
+            android:id="@+id/findMatch"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Find a Match" />
+    </group>
+
+    <item android:title="More..">
+        <menu>
+            <item
+                android:id="@+id/aboutUs"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Developer's Info" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>
