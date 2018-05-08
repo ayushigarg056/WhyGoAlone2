@@ -12,16 +12,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -33,19 +33,19 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ayushigarg.whygoalone.Fragments.Chat;
+import com.ayushigarg.whygoalone.Fragments.DashBoardFragment;
+import com.ayushigarg.whygoalone.Fragments.FavouritePlacesFragment;
+import com.ayushigarg.whygoalone.Fragments.FindMatchFragment;
+import com.ayushigarg.whygoalone.Interfaces.GetLL;
+import com.ayushigarg.whygoalone.Interfaces.GetResponse;
+import com.ayushigarg.whygoalone.Models.Restaurant;
+import com.ayushigarg.whygoalone.Models.User2;
+import com.ayushigarg.whygoalone.R;
+import com.ayushigarg.whygoalone.Utils.GPSTracker;
+import com.ayushigarg.whygoalone.Utils.NearbyRestaurants;
+import com.ayushigarg.whygoalone.Utils.SearchRestaurants;
 import com.bumptech.glide.Glide;
-import  com.ayushigarg.whygoalone.Fragments.DashBoardFragment;
-import  com.ayushigarg.whygoalone.Fragments.DeveloperInfoFragment;
-import  com.ayushigarg.whygoalone.Fragments.FavouritePlacesFragment;
-import  com.ayushigarg.whygoalone.Fragments.FindMatchFragment;
-import  com.ayushigarg.whygoalone.Interfaces.GetLL;
-import  com.ayushigarg.whygoalone.Interfaces.GetResponse;
-import  com.ayushigarg.whygoalone.Models.Restaurant;
-import  com.ayushigarg.whygoalone.Models.User2;
-import  com.ayushigarg.whygoalone.R;
-import  com.ayushigarg.whygoalone.Utils.GPSTracker;
-import  com.ayushigarg.whygoalone.Utils.NearbyRestaurants;
-import  com.ayushigarg.whygoalone.Utils.SearchRestaurants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -295,16 +295,16 @@ public class DashboardActivity extends AppCompatActivity
             fragTxn.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragTxn.commit();
 
-        } else if (id == R.id.aboutUs) {
-
+        }else if(id==R.id.chat)
+        {
             fragManager = getSupportFragmentManager();
-            DeveloperInfoFragment developerInfoFragment = new DeveloperInfoFragment(this);
+            Chat chat=new Chat(ctx,activity);
             fragTxn = fragManager.beginTransaction();
-            fragTxn.replace(R.id.fragContainer, developerInfoFragment);
+            fragTxn.replace(R.id.fragContainer,chat);
             fragTxn.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragTxn.commit();
-
-        } else if (id == R.id.logout) {
+        }
+        else if (id == R.id.logout) {
             FirebaseAuth.getInstance().signOut();
             startActivity(new Intent(DashboardActivity.this, MainActivity.class));
         }

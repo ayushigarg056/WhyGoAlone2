@@ -70,8 +70,8 @@ public class FindMatchFragment extends Fragment {
         auth = FirebaseAuth.getInstance();
 
         Firebase.setAndroidContext(mContext);
-        userRef = new Firebase("https://zinder-dc0b2.firebaseio.com/").child("userss");
-
+//        userRef = new Firebase("https://zinder-dc0b2.firebaseio.com/").child("userss");
+        userRef = new Firebase("https://whygoalone-899e4.firebaseio.com/").child("userss");
         userRef.addValueEventListener(new com.firebase.client.ValueEventListener() {
             @Override
             public void onDataChange(com.firebase.client.DataSnapshot dataSnapshot) {

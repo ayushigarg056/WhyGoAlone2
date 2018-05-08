@@ -17,11 +17,8 @@ import com.bumptech.glide.Glide;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.mindorks.placeholderview.SwipePlaceHolderView;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
@@ -107,57 +104,7 @@ public class TinderCard {
     private void onSwipeIn(){
         Log.d("EVENT", "onSwipedIn");
 
-        getAllUsers();
 
-        firebaseDatabase.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("swippedPeopleArrayList").getValue() != null){
-                    swippedList = (ArrayList<Profile>) dataSnapshot.child("swippedPeopleArrayList").getValue();
-                }
-                else{
-                    swippedList = new ArrayList<>();
-                }
-                    swippedList.add(new Profile(mProfile.getUrl(), mProfile.getName(), mProfile.getAge(), mProfile.getLocation()));
-                    onRightSwipe.onSwipe(swippedList);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
-        onRightSwipe = new OnRightSwipe() {
-            @Override
-            public void onSwipe(ArrayList<Profile> swippedList) {
-                firebaseDatabase.child(userId).child("swippedPeopleArrayList").setValue(swippedList);
-                for (int i=0;i<allUsers.size();i++){
-                    boolean matchFound = false;
-                    if (allUsers.get(i).getName().equals(swippedList.get(swippedList.size()-1).getName())){
-                        if (allUsers.get(i).getSwippedPeopleArrayList() != null) {
-                            for (int j = 0; j < allUsers.get(i).getSwippedPeopleArrayList().size(); j++) {
-                                if (allUsers.get(i).getSwippedPeopleArrayList().get(j).getUrl().equals(mProfile.getUrl())) {
-                                    Log.d("Hogyaa", "Matched!!!");
-                                    matchFound = true;
-                                    User2 userr = null;
-                                    for (int k=0;k<allUsers.size();k++){
-                                        if (allUsers.get(k).getProfilePicUrl().equals(mProfile.getUrl())){
-                                            userr = allUsers.get(k);
-                                            break;
-                                        }
-                                    }
-                                    generateNotification(allUsers.get(i));
-                                    matchIsFound(userr, allUsers.get(i));
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    if (matchFound){
-                        break;
-                    }
-                }
-            }
-        };
     }
 
     @SwipeInState

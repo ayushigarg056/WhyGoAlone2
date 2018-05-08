@@ -1,6 +1,8 @@
 package com.ayushigarg.whygoalone.Activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -24,15 +31,21 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth auth;
     ProgressBar progressBar;
     Button btnSignup, btnLogin, btnReset;
-
+    DatabaseReference db;
+//    Boolean logg;
+    SharedPreferences sp;
+    SharedPreferences.Editor edi;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-        Log.d("WSS", "onCreate: Login " + auth.toString());
+        db= FirebaseDatabase.getInstance().getReference("detail");
 
+        sp=getSharedPreferences("mydata", Context.MODE_PRIVATE);
+//        Log.d("WSS", "onCreate: Login " + auth.toString());
+        edi=sp.edit();
 //        if (auth.getCurrentUser() != null) {
 //            startActivity(new Intent(LoginActivity.this, MainActivity.class));
 //            finish();
@@ -93,9 +106,36 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, "Authentication failed, check your email and password or sign up", Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                                    startActivity(intent);
-                                    finish();
+
+                                    final String id = auth.getCurrentUser().getUid();
+                                    Log.d("login_user_id", "onComplete: " + id);
+                                    FirebaseDatabase.getInstance().getReference().child("userss").child(id).child("name").addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            String thisUser = dataSnapshot.getValue(String.class);
+                                            Log.d("login_user", "onDataChange: " + thisUser);
+
+                                            edi.putString("userid", id);
+                                            edi.putString("username", thisUser);
+//                                            edi.putString("logged", String.valueOf(logg));
+                                            edi.commit();
+
+                                            finish();
+
+
+                                            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                                            startActivity(intent);
+//                                            finish();
+                                            //startActivity(new Intent(Login.this,Recyler_message.class));
+                                        }
+
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    });
+
+
                                 }
                             }
                         });

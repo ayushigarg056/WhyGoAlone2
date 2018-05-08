@@ -48,21 +48,21 @@ public class DeveloperInfoFragment extends Fragment {
         fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openWebPage("https://www.facebook.com/ishaan.dhamija.5");
+                openWebPage("https://www.facebook.com/mansi.gupta");
             }
         });
 
         gh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openWebPage("https://github.com/ishaandhamija");
+                openWebPage("https://github.com/imansi.gupta");
             }
         });
 
         li.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openWebPage("https://www.linkedin.com/in/ishaan-dhamija-108ba385/");
+                openWebPage("https://www.linkedin.com/in/mansi.gupta.108ba385/");
             }
         });
 
@@ -85,7 +85,7 @@ public class DeveloperInfoFragment extends Fragment {
     void sendEmail(){
         Intent email = new Intent(Intent.ACTION_SEND);
         email.setType("message/rfc822");
-        email.putExtra(Intent.EXTRA_EMAIL  , new String[]{"ishaandhamija@gmail.com"});
+        email.putExtra(Intent.EXTRA_EMAIL  , new String[]{"mansigupta163@gmail.com"});
         email.putExtra(Intent.EXTRA_SUBJECT, "Feedback/Query");
         startActivity(Intent.createChooser(email, "Send mail..."));
     }

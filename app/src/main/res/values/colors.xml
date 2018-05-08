@@ -3,5 +3,16 @@
     <color name="colorPrimary">#FF0000</color>
     <color name="colorPrimaryDark">#B22222</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colortext">#e1e5ee</color>
+    <color name="colordevider">#cfc391</color>
+    <color name="signintext">#d4ccae</color>
+    <color name="bg">#3b7fbe</color>
+    <color name="signinbg">#201886</color>
+    <color name="signupbg">#2e82ba</color>
+    <color name="rect">#e2deb0</color>
+    <color name="bg1">#79b5ec</color>
+    <color name="bg2">#104779</color>
+    <color name="rect2">#d1ca78</color>
+    <color name="rect3">#87e97e</color>
 
 </resources>

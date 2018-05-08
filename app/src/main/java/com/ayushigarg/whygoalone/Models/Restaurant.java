@@ -1,8 +1,6 @@
 package com.ayushigarg.whygoalone.Models;
 
-/**
- * Created by ishaandhamija on 07/06/17.
- */
+
 
 public class Restaurant {
 

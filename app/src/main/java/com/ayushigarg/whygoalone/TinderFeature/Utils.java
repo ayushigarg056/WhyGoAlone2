@@ -17,25 +17,7 @@ public class Utils {
 
         List<Profile> profileList = new ArrayList<>();
 
-//        ref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                User2 user = dataSnapshot.getValue(User2.class);
-//
-//                if (user == null) {
-//                    Log.e(TAG, "User data is null!");
-//                    return;
-//                }
-//
-//                Log.e(TAG, "User data is changed!" + user.getName());
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                Log.e(TAG, "Failed to read user", error.toException());
-//            }
-//        });
+
 
         profileList.add(new Profile("https://pbs.twimg.com/profile_images/572905100960485376/GK09QnNG.jpeg", "Sofia",  20, "New York"));
         profileList.add(new Profile("https://pbs.twimg.com/profile_images/572905100960485376/GK09QnNG.jpeg", "Sofia",  20, "New York"));
